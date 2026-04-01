@@ -1,101 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phone Hunter Pro | Advanced Search</title>
+    <title>Hot Gadgets | Phone Hunting API</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Smooth Fade-In Animation */
+        /* Fade-in animations for cards */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fade-in { opacity: 0; animation: fadeInUp 0.6s ease-out forwards; }
+        .animate-fade-in { animation: fadeInUp 0.5s ease-out forwards; }
         
-        /* Modal Backdrop Blur */
         dialog::backdrop {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
         }
-        
-        /* Custom scrollbar for horizontal comparison and vertical details */
-        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        .custom-scroll::-webkit-scrollbar { width: 5px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 min-h-screen font-sans overflow-x-hidden">
+<body class="bg-white text-slate-900 font-sans">
 
-    <div id="hero-section" class="relative bg-white border-b border-slate-100 overflow-hidden">
-        <div class="container mx-auto px-6 py-20 flex flex-col lg:flex-row items-center justify-between">
-            <div class="lg:w-1/2 text-center lg:text-left z-10">
-                <h1 class="text-6xl font-black tracking-tighter leading-none mb-6">
-                    The Future <br><span class="text-blue-600">In Your Hands.</span>
-                </h1>
-                <p class="text-xl text-slate-500 mb-10 max-w-lg mx-auto lg:mx-0">
-                    Search, compare, and discover the world's most advanced mobile technology in one place.
-                </p>
-                <div class="flex items-center gap-2 bg-slate-100 p-2 rounded-2xl shadow-inner max-w-md mx-auto lg:mx-0 border border-slate-200">
-                    <input id="search-field" type="text" placeholder="Search (e.g. iPhone, Samsung)" class="bg-transparent pl-4 w-full focus:outline-none font-medium">
-                    <button onclick="handleSearch()" class="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all active:scale-95">Search</button>
-                </div>
-            </div>
-            <div class="lg:w-1/2 mt-12 lg:mt-0 relative flex justify-center">
-                <img src="https://images.unsplash.com/photo-1592890288564-76628a30a657?q=80&w=1000&auto=format&fit=crop" 
-                     alt="Mobile Tech" 
-                     class="w-80 rounded-[3rem] shadow-2xl rotate-6 hover:rotate-0 transition-transform duration-700 border-8 border-white">
+    <nav class="container mx-auto px-6 py-6 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Hot Gadgets</h1>
+        <button class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all">Sign Up</button>
+    </nav>
+
+    <header id="hero-section" class="container mx-auto px-6 py-12 text-center">
+        <h2 class="text-5xl md:text-6xl font-extrabold mb-6">Apple iPhone 13 Pro Max</h2>
+        <p class="text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.
+        </p>
+        <button class="bg-blue-600 text-white px-10 py-4 rounded-xl font-bold mb-16 hover:scale-105 transition-transform">Buy Now</button>
+        
+        <div class="relative flex justify-center items-center h-80">
+            <img src="https://tasmim-tahsin.github.io/PhoneHuntingAPI/images/pngwing%202.png" class="w-48 md:w-64 absolute -translate-x-32 md:-translate-x-48 z-0 opacity-50" alt="iPhone Left">
+            <img src="https://tasmim-tahsin.github.io/PhoneHuntingAPI/images/pngwing%202.png" class="w-48 md:w-64 absolute translate-x-32 md:translate-x-48 z-0 opacity-50" alt="iPhone Right">
+            <img src="https://tasmim-tahsin.github.io/PhoneHuntingAPI/images/pngwing%201.png" class="w-56 md:w-72 z-10 drop-shadow-2xl" alt="iPhone Main">
+        </div>
+    </header>
+
+    <section class="bg-white py-20 border-t border-slate-50">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-10">Search Your Phone</h2>
+            <div class="flex items-center gap-2 bg-slate-100 p-2 rounded-2xl max-w-2xl mx-auto border border-slate-200">
+                <input id="search-field" type="text" placeholder="Search your phone..." class="bg-transparent pl-4 w-full focus:outline-none font-medium py-2">
+                <button onclick="handleSearch()" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all">Search</button>
             </div>
         </div>
-    </div>
+    </section>
 
-    <main class="container mx-auto px-4 py-12">
-        <div id="loading-spinner" class="hidden flex flex-col items-center justify-center my-20">
-            <div class="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
-            <p class="text-blue-600 font-bold">Hunting for data...</p>
+    <main class="container mx-auto px-6 pb-20">
+        <div id="loading-spinner" class="hidden flex flex-col items-center justify-center my-10">
+            <div class="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
         </div>
 
-        <div id="phone-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div id="phone-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             </div>
 
         <div id="show-all-container" class="hidden text-center mt-16">
-            <button onclick="handleShowAll()" class="bg-slate-900 text-white py-4 px-10 rounded-2xl font-bold hover:bg-slate-800 transition-all">Show All Results</button>
+            <button onclick="handleShowAll()" class="bg-blue-600 text-white py-4 px-10 rounded-xl font-bold hover:bg-blue-700 transition-all">Show All</button>
         </div>
     </main>
 
-    <div id="comparison-bar" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-8 py-5 rounded-[2rem] shadow-2xl flex items-center gap-8 z-50 transition-all duration-500 transform translate-y-40 opacity-0 border border-slate-700">
+    <footer class="bg-slate-50 border-t border-slate-100 py-16 mt-20">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold mb-2">Hot Gadgets BD</h3>
+            <p class="text-slate-400 mb-8">Providing reliable tech items since 1992</p>
+            <div class="w-full h-px bg-slate-200 mb-8"></div>
+            <p class="text-slate-400 text-sm">Copyright © 2023 - All rights reserved</p>
+        </div>
+    </footer>
+
+    <div id="comparison-bar" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-8 py-5 rounded-[2rem] shadow-2xl flex items-center gap-8 z-50 transition-all duration-500 transform translate-y-40 opacity-0">
         <div class="flex items-center gap-3">
-            <div class="bg-blue-600 h-10 w-10 rounded-full flex items-center justify-center font-black" id="compare-count">0</div>
-            <p class="font-bold whitespace-nowrap">Selected</p>
+            <div class="bg-blue-600 h-10 w-10 rounded-full flex items-center justify-center font-black text-sm" id="compare-count">0</div>
+            <p class="font-bold text-sm">Compare List</p>
         </div>
         <div class="flex gap-4">
-            <button onclick="openComparisonModal()" class="bg-white text-slate-900 px-6 py-2 rounded-xl font-bold hover:bg-slate-200 transition-all">Compare Now</button>
-            <button onclick="clearComparison()" class="text-slate-400 hover:text-white transition-colors underline">Clear</button>
+            <button onclick="openComparisonModal()" class="bg-white text-slate-900 px-6 py-2 rounded-xl font-bold hover:bg-slate-200 text-sm">Compare</button>
+            <button onclick="clearComparison()" class="text-slate-400 hover:text-white text-sm underline">Clear</button>
         </div>
     </div>
 
-    <dialog id="comparison_modal" class="rounded-3xl shadow-2xl p-0 w-[95%] max-w-6xl overflow-hidden bg-white">
-        <div class="p-8 border-b flex justify-between items-center bg-slate-50">
-            <h2 class="text-3xl font-black">Head-to-Head</h2>
-            <form method="dialog"><button class="text-4xl text-slate-300 hover:text-slate-900">&times;</button></form>
-        </div>
-        <div id="comparison-content" class="flex flex-row divide-x divide-slate-100 overflow-x-auto custom-scroll min-h-[500px]">
-            </div>
-    </dialog>
-
     <dialog id="show_details_modal" class="rounded-3xl shadow-2xl p-0 w-full max-w-2xl overflow-hidden bg-white">
         <div class="flex flex-col max-h-[90vh]">
-            
-            <div id="modal-content" class="overflow-y-auto custom-scroll">
-                </div>
-
-            <div class="p-6 bg-slate-50 border-t border-slate-100 flex justify-end sticky bottom-0">
-                <form method="dialog">
-                    <button class="px-10 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg transition-all active:scale-95">
-                        Close
-                    </button>
-                </form>
+            <div id="modal-content" class="overflow-y-auto custom-scroll"></div>
+            <div class="p-6 bg-slate-50 border-t flex justify-end sticky bottom-0">
+                <form method="dialog"><button class="px-10 py-3 bg-red-500 text-white font-bold rounded-xl">Close</button></form>
             </div>
         </div>
+    </dialog>
+
+    <dialog id="comparison_modal" class="rounded-3xl shadow-2xl p-0 w-[95%] max-w-6xl overflow-hidden bg-white">
+        <div class="p-8 border-b flex justify-between items-center bg-slate-50">
+            <h2 class="text-2xl font-bold">Comparison</h2>
+            <form method="dialog"><button class="text-3xl text-slate-300">&times;</button></form>
+        </div>
+        <div id="comparison-content" class="flex flex-row divide-x divide-slate-100 overflow-x-auto custom-scroll"></div>
     </dialog>
 
     <script src="app.js"></script>
